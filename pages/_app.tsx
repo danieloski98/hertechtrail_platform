@@ -1,8 +1,18 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import { ChakraProvider } from '@chakra-ui/react'
+import { QueryClientProvider, QueryClient } from 'react-query'
+
+export const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </QueryClientProvider>
+  )
 }
 
-export default MyApp
+export default MyApp;
